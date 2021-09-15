@@ -15,7 +15,7 @@ class Admin:
         self.name = f"Admin-{str(uuid.uuid4())[:8]}"
         self.created = True
         time.sleep(5)
-        print("Admin creating ends")
+        print(f"Admin {self.name} creating ends")
         return True
 
     def create_customer(self):
