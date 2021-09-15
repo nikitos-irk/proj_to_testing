@@ -16,11 +16,11 @@ class Customer:
         self.name = f"Customer-{str(uuid.uuid4())[:8]}"
         self.created = True
         time.sleep(5)
-        print("Customer creating finished")
+        print(f"Customer {self.name} creating finished")
         return True
 
     def remove(self):
-        print("Customer removing...")
+        print(f"Customer {self.name} removing...")
         result = True
         if not self.created:
             raise Exception("Can't remove non-existing customer")
@@ -31,7 +31,7 @@ class Customer:
         return result
 
     def login(self, password):
-        print("Customer loggin in...")
+        print(f"Customer {self.name}  loggin in...")
         result = True
         if password != "123":
             result = False
@@ -48,7 +48,7 @@ class Customer:
         return result
 
     def logout(self):
-        print("Customer log out...")
+        print(f"Customer {self.name} log out...")
         result = True
 
         if not self.created:
@@ -59,10 +59,10 @@ class Customer:
         self.online = False
         time.sleep(1)
         print("Customer logout finished...")
-        return result()
+        return result
 
     def create_machine(self):
-        print("Customer is going to create a machine...")
+        print(f"Customer {self.name} is going to create a machine...")
         if not self.created:
             raise Exception("Customer does not exist!")
         if not self.online:
