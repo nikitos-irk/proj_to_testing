@@ -3,10 +3,10 @@ import uuid
 
 
 INDENTS = {
-    "SESSION":  "-" * 15 + ">",
-    "MODULE":   "-" * 10 + ">",
-    "CLASS":    "-" * 5 + ">",
-    "FUNCTION": "->"
+    "SESSION":  "\n" + "-" * 15 + ">",
+    "MODULE":   "\n" + "-" * 10 + ">",
+    "CLASS":    "\n" + "-" * 5 + ">",
+    "FUNCTION": "\n" + "->"
 }
 
 
@@ -19,7 +19,7 @@ def fruit_session(request):
         print(f"{INDENTS[scope_name]}Finish of {scope_name} fixture!")
     request.addfinalizer(fin)
 
-    return str(uuid.uuid4())
+    return str(uuid.uuid4())[:8]
 
 
 @pytest.fixture(scope="module")
@@ -31,7 +31,7 @@ def fruit_module(request):
         print(f"{INDENTS[scope_name]}Finish of {scope_name} fixture!")
     request.addfinalizer(fin)
 
-    return str(uuid.uuid4())
+    return str(uuid.uuid4())[:8]
 
 
 @pytest.fixture(scope="class")
@@ -41,8 +41,9 @@ def fruit_class(request):
 
     def fin():
         print(f"{INDENTS[scope_name]}Finish of {scope_name} fixture!")
+    request.addfinalizer(fin)
 
-    return str(uuid.uuid4())
+    return str(uuid.uuid4())[:8]
 
 
 @pytest.fixture(scope="function")
@@ -52,5 +53,6 @@ def fruit_func(request):
 
     def fin():
         print(f"{INDENTS[scope_name]}Finish of {scope_name} fixture!")
+    request.addfinalizer(fin)
 
-    return str(uuid.uuid4())
+    return str(uuid.uuid4())[:8]
