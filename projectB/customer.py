@@ -1,7 +1,7 @@
 import uuid
 import time
 
-from machine import VirtualMachine
+from projectB.machine import VirtualMachine
 
 
 class Customer:

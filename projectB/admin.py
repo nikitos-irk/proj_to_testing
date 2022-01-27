@@ -1,7 +1,7 @@
 import uuid
 import time
 
-from customer import Customer
+from projectB.customer import Customer
 
 
 class Admin:
