@@ -15,7 +15,7 @@ class Customer:
         print("Customer creating...")
         self.name = f"Customer-{str(uuid.uuid4())[:8]}"
         self.created = True
-        time.sleep(5)
+        time.sleep(2)
         print("Customer creating finished")
         return True
 
