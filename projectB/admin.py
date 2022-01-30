@@ -1,7 +1,7 @@
 import uuid
 import time
 
-from customer import Customer
+from projectB.customer import Customer
 
 
 class Admin:
@@ -14,7 +14,7 @@ class Admin:
         print("Admin creating starts...")
         self.name = f"Admin-{str(uuid.uuid4())[:8]}"
         self.created = True
-        time.sleep(5)
+        time.sleep(2)
         print("Admin creating ends")
         return True
 

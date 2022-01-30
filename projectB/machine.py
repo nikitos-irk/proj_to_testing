@@ -14,9 +14,8 @@ class VirtualMachine:
         if self.created or self.removed:
             raise Exception("Machine is already created/removed!")
         self.name = f"Machine-{str(uuid.uuid4())[:8]}"
-        time.sleep(10)
+        time.sleep(2)
         self.created = True
-        self.active = True
         print("Virtual maching creating finished")
         return True
 
@@ -25,8 +24,9 @@ class VirtualMachine:
         if not self.created or self.removed:
             raise Exception("Machine is not created or already removed!")
         self.removed = True
+        self.created = False
         self.active = False
-        time.sleep(5)
+        time.sleep(2)
         print("Virtual maching removing finished")
         return True
 

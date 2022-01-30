@@ -1,7 +1,7 @@
 import uuid
 import time
 
-from machine import VirtualMachine
+from projectB.machine import VirtualMachine
 
 
 class Customer:
@@ -15,51 +15,55 @@ class Customer:
         print("Customer creating...")
         self.name = f"Customer-{str(uuid.uuid4())[:8]}"
         self.created = True
-        time.sleep(5)
+        time.sleep(2)
         print("Customer creating finished")
         return True
 
     def remove(self):
         print("Customer removing...")
-        result = True
         if not self.created:
             raise Exception("Can't remove non-existing customer")
         if self.online:
-            result = False
-        time.sleep(1)
-        print("Customer removing finished")
-        return result
+            raise Exception("Can't remove if customer is online")
+        else:
+            time.sleep(1)
+            print("Customer removing finished")
+            self.created = False
+
+        return True
 
     def login(self, password):
         print("Customer loggin in...")
-        result = True
-        if password != "123":
-            result = False
-        if not self.created:
-            raise Exception("Impossible to login if customer was not created!")
+        result = False
 
         if self.online:
             print("Customer is already online")
-            result = False
+        elif not self.created:
+            raise Exception("Impossible to login if customer was not created!")
+        elif password != "123":
+            print("Wrong login/password")
+        else:
+            self.online = True
+            result = True
+            time.sleep(3)
+            print("Customer loggin in finished...")
 
-        self.online = True
-        time.sleep(3)
-        print("Customer loggin in finished...")
         return result
 
     def logout(self):
         print("Customer log out...")
-        result = True
 
         if not self.created:
             raise Exception(
-                "Impossible to logout if customer was not created!")
+                "Impossible to logout if a customer was not created!")
         if not self.online:
-            result = False
-        self.online = False
-        time.sleep(1)
-        print("Customer logout finished...")
-        return result()
+            raise Exception(
+                "Impossible to logout if a customer was not logged in!")
+        else:
+            self.online = False
+            time.sleep(1)
+            print("Customer logout finished...")
+        return True
 
     def create_machine(self):
         print("Customer is going to create a machine...")
