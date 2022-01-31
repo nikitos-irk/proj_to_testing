@@ -1,1 +1,1 @@
-# proj_to_test_for_Konstantin
+# A sample for testing
